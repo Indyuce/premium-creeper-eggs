@@ -1,0 +1,12 @@
+# If you don't want to use egg recipes, just disable every recipe here.
+enable-recipes: true
+
+# Set 'enabled' to false to disable a specific creeper egg recipe.
+# 'recipe' corresponds to the actual egg recipe.
+
+FIERY:
+    enabled: true
+    recipe:
+    - 'AIR AIR AIR:0'
+    - 'AIR AIR AIR:0'
+    - 'AIR AIR AIR:0'

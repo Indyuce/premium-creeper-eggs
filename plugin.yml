@@ -1,0 +1,40 @@
+name: PremiumCreeperEggs
+version: 1.1.1
+author: Indyuce
+main: net.Indyuce.creepereggs.PremiumCreeperEggs
+softdepend: [WorldGuard,SilkSpawners]
+api-version: 1.13
+description: A great addon for factions servers!
+commands:
+    premiumcreepereggs:
+        description: Main command.
+        aliases: [pce]
+permissions:
+    premiumcreepereggs.admin:
+        default: op
+    premiumcreepereggs.update-notify:
+        default: op
+    premiumcreepereggs.use.*:
+        default: op
+        children:
+            moarbows.use.auto-ignite: true
+            moarbows.use.charged: true
+            moarbows.use.darkness: true
+            moarbows.use.daylight: true
+            moarbows.use.draining: true
+            moarbows.use.fiery: true
+            moarbows.use.flashbang: true
+            moarbows.use.frag: true
+            moarbows.use.frozen: true
+            moarbows.use.lightning: true
+            moarbows.use.lucky: true
+            moarbows.use.machine-gun: true
+            moarbows.use.magma: true
+            moarbows.use.midas: true
+            moarbows.use.nuke: true
+            moarbows.use.poisoned: true
+            moarbows.use.quarry: true
+            moarbows.use.sandstacker: true
+            moarbows.use.shockwave: true
+            moarbows.use.smoker: true
+            moarbows.use.wither: true

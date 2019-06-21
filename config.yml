@@ -1,0 +1,35 @@
+# --------------------------------------------------------------
+#
+# Thanks for using PremiumCreeperEggs!
+#
+# --------------------------------------------------------------
+
+# Notifies players with the 'premiumcreepereggs.update-notify' perm node when
+# they join the server if a new update is available for download.
+# Requires /reload when changed.
+update-notify: true
+
+# Edit in-game messages here.
+message:
+    gui:
+        no-egg: '&c- No Creeper Egg -'
+        title: 'Available Creeper Eggs'
+    not-enough-perms: 'You don''t have enough permissions.'
+    not-enough-perms-egg: '&cYou don''t have enough permissions to use this creeper egg.'
+    receive-egg: 'You were given &f%item%&e.'
+    worldguard-flag: 'You can''t use a creeper egg here.'
+    cooldown: 'You must wait another %remain% second%s%.'
+
+# Prevents players from renaming creeper eggs using anvils.
+# Requires /reload when changed.
+cancel-renaming: true
+
+# Blocks that can't be replaced by creepers e.g Frozen Creeper
+block-blacklist:
+- BEDROCK
+- OBSIDIAN
+- CHEST
+- TRAPPED_CHEST
+- HOPPER
+- DISPENSER
+- DROPPER

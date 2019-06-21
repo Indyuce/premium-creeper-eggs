@@ -1,0 +1,59 @@
+# If you don't want to use any of the following feature, just
+# disable them entirely here. Requires /reload when changed.
+enable-drops:
+    custom-creeper: true
+    vanilla-creeper: true
+
+# The chance for a custom creeper of dropping
+# his egg back when it dies before exploding.
+custom-creeper:
+    NUKE: 80
+    MIDAS: 80
+    SMOKER: 80
+    CHARGED: 80
+    LIGHTNING: 80
+    DRAINING: 80
+    AUTO_IGNITE: 80
+    DAYLIGHT: 80
+    WITHER: 80
+    FRAG: 80
+    SHOCKWAVE: 80
+    FLASHBANG: 80
+    SANDSTACKER: 80
+    POISONED: 80
+    FIERY: 80
+    QUARRY: 80
+    DARKNESS: 80
+    MACHINEGUN: 80
+    MAGMA: 80
+    FROZEN: 80
+    LUCKY: 80
+
+# The chance (in %) for a VANILLA creeper of dropping
+# a custom egg. The list corresponds to the eggs that
+# can be dropped. The more an egg is in the list, the
+# higher the chance to drop it is.
+vanilla-creeper:
+    chance: 1
+    droppable:
+    - NUKE
+    - MIDAS
+    - SMOKER
+    - CHARGED
+    - LIGHTNING
+    - DRAINING
+    - AUTO_IGNITE
+    - DAYLIGHT
+    - WITHER
+    - FRAG
+    - SHOCKWAVE
+    - FLASHBANG
+    - SANDSTACKER
+    - POISONED
+    - FIERY
+    - QUARRY
+    - DARKNESS
+    - MACHINEGUN
+    - MAGMA
+    - FROZEN
+    - LUCKY
