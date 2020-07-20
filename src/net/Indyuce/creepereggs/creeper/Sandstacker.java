@@ -32,8 +32,10 @@ public class Sandstacker extends CreeperEgg {
 
 			public void run() {
 				while (loc.getY() < 256) {
-					if (loc.getBlock().getType() == Material.AIR)
-						loc.getBlock().setType(Material.SAND);
+					if (loc.getBlock().getType() != Material.AIR)
+						break;
+
+					loc.getBlock().setType(Material.SAND);
 					loc.add(0, 1, 0);
 				}
 			}
