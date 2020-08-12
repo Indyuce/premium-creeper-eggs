@@ -37,6 +37,7 @@ import net.Indyuce.creepereggs.manager.EggsManager;
 import net.Indyuce.creepereggs.version.ServerVersion;
 import net.Indyuce.creepereggs.version.SpigotPlugin;
 import net.Indyuce.creepereggs.version.wrapper.VersionWrapper;
+import net.Indyuce.creepereggs.version.wrapper.VersionWrapper_Reflection;
 
 public class PremiumCreeperEggs extends JavaPlugin {
 
@@ -71,11 +72,11 @@ public class PremiumCreeperEggs extends JavaPlugin {
 
 		try {
 			getLogger().log(Level.INFO, "Detected Bukkit Version: " + version.toString());
-			nms = (VersionWrapper) Class.forName("net.Indyuce.creepereggs.version.wrapper.NMSHandler_" + version.toString().substring(1)).newInstance();
+			nms = (VersionWrapper) Class.forName("net.Indyuce.creepereggs.version.wrapper.NMSHandler_" + version.toString().substring(1))
+					.newInstance();
 		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
-			getLogger().log(Level.SEVERE, "Your server version is not compatible.");
-			Bukkit.getPluginManager().disablePlugin(this);
-			return;
+			getLogger().log(Level.SEVERE, "Your server version is handled via reflection");
+			nms = new VersionWrapper_Reflection();
 		}
 
 		new Metrics(this);
