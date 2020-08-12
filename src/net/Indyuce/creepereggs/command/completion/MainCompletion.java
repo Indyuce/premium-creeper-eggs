@@ -30,7 +30,7 @@ public class MainCompletion implements TabCompleter {
 		else if (args[0].equalsIgnoreCase("give")) {
 			if (args.length == 2)
 				for (CreeperEgg egg : PremiumCreeperEggs.getInstance().getEggs().getAll())
-					list.add(egg.getID());
+					list.add(egg.getId());
 			
 			if (args.length == 3)
 				for (Player target : Bukkit.getOnlinePlayers())

@@ -33,7 +33,8 @@ public class EggsManager {
 
 				// make sure this is a non anonymous class
 				// use registerEgg(CreeperEgg) since
-				// PremiumCreeperEggs.getInstance().getEggs() is not initialized yet
+				// PremiumCreeperEggs.getInstance().getEggs() is not initialized
+				// yet
 				if (name.endsWith(".class") && !name.contains("$") && name.startsWith("net.Indyuce.creepereggs.creeper."))
 					registerEgg((CreeperEgg) Class.forName(name.substring(0, name.length() - 6)).newInstance());
 			}
@@ -45,11 +46,12 @@ public class EggsManager {
 
 	public void registerEgg(CreeperEgg egg) {
 		if (!canRegisterCreepers()) {
-			PremiumCreeperEggs.getInstance().getLogger().log(Level.WARNING, "Couldn't register " + egg.getID() + ": make sure you register creeper eggs before PCE enables (using #onLoad & a soft dependency)");
+			PremiumCreeperEggs.getInstance().getLogger().log(Level.WARNING, "Couldn't register " + egg.getId()
+					+ ": make sure you register creeper eggs before PCE enables (using #onLoad & a soft dependency)");
 			return;
 		}
 
-		eggs.put(egg.getID(), egg);
+		eggs.put(egg.getId(), egg);
 	}
 
 	public void stopRegistration() {
@@ -76,7 +78,7 @@ public class EggsManager {
 	}
 
 	public CreeperEgg fromItem(ItemStack item) {
-		String tag = PremiumCreeperEggs.getInstance().getNMS().getStringTag(item, "creeperEggId");
+		String tag = PremiumCreeperEggs.getInstance().getVersionWrapper().getNBTItem(item).getString("creeperEggId");
 		return tag.equals("") ? null : eggs.get(tag);
 	}
 }

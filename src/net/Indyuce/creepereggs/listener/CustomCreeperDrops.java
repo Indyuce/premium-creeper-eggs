@@ -25,7 +25,7 @@ public class CustomCreeperDrops implements Listener {
 
 		// check if egg exists & calculate chance to drop
 		CreeperEgg egg = PremiumCreeperEggs.getInstance().getEggs().fromName(entity.getCustomName());
-		if (egg != null && random.nextDouble() <= PremiumCreeperEggs.getInstance().getDropsConfig().getDouble("custom-creeper." + egg.getID()) / 100)
+		if (egg != null && random.nextDouble() <= PremiumCreeperEggs.getInstance().getDropsConfig().getDouble("custom-creeper." + egg.getId()) / 100)
 			entity.getWorld().dropItemNaturally(entity.getLocation(), egg.getItem());
 	}
 }

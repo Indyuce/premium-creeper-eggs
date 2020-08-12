@@ -50,7 +50,7 @@ public class CreeperListener implements Listener {
 			return;
 
 		// check for permission
-		if (!player.hasPermission("premiumcreepereggs.use." + egg.getLowerCaseID())) {
+		if (!player.hasPermission("premiumcreepereggs.use." + egg.getLowerCaseId())) {
 			player.sendMessage(PremiumCreeperEggs.getInstance().getMessage("not-enough-perms-egg"));
 			return;
 		}

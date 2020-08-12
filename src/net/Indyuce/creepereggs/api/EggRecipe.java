@@ -52,7 +52,7 @@ public class EggRecipe {
 
 	@SuppressWarnings("deprecation")
 	public ShapedRecipe toShapedRecipe() {
-		ShapedRecipe recipe = PremiumCreeperEggs.getInstance().getVersion().isBelowOrEqual(1, 11) ? new ShapedRecipe(egg.getItem()) : new ShapedRecipe(new NamespacedKey(PremiumCreeperEggs.getInstance(), "PremiumCreeperEggs_" + egg.getID()), egg.getItem());
+		ShapedRecipe recipe = PremiumCreeperEggs.getInstance().getVersion().isBelowOrEqual(1, 11) ? new ShapedRecipe(egg.getItem()) : new ShapedRecipe(new NamespacedKey(PremiumCreeperEggs.getInstance(), "PremiumCreeperEggs_" + egg.getId()), egg.getItem());
 		recipe.shape(shape);
 		for (char char1 : ingredients.keySet())
 			recipe.setIngredient(char1, ingredients.get(char1));

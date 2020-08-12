@@ -39,7 +39,7 @@ public class MainCommand implements CommandExecutor {
 			if (!(sender instanceof Player)) {
 				sender.sendMessage(ChatColor.GREEN + "Available eggs:");
 				for (CreeperEgg egg : PremiumCreeperEggs.getInstance().getEggs().getAll())
-					sender.sendMessage(ChatColor.WHITE + "- " + egg.getName() + " (" + egg.getID() + ")");
+					sender.sendMessage(ChatColor.WHITE + "- " + egg.getName() + " (" + egg.getId() + ")");
 				return true;
 			}
 			new CreepersList((Player) sender).open();
@@ -49,7 +49,7 @@ public class MainCommand implements CommandExecutor {
 			PremiumCreeperEggs.getInstance().reloadConfig();
 			PremiumCreeperEggs.getInstance().reloadConfigFiles();
 			for (CreeperEgg egg : PremiumCreeperEggs.getInstance().getEggs().getAll())
-				egg.update(PremiumCreeperEggs.getInstance().getEggsConfig().getConfigurationSection(egg.getID()));
+				egg.update(PremiumCreeperEggs.getInstance().getEggsConfig().getConfigurationSection(egg.getId()));
 			sender.sendMessage(ChatColor.YELLOW + "Eggs & config reloaded.");
 		}
 

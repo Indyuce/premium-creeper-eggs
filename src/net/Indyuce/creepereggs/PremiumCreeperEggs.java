@@ -36,7 +36,7 @@ import net.Indyuce.creepereggs.listener.VanillaCreeperDrops;
 import net.Indyuce.creepereggs.manager.EggsManager;
 import net.Indyuce.creepereggs.version.ServerVersion;
 import net.Indyuce.creepereggs.version.SpigotPlugin;
-import net.Indyuce.creepereggs.version.nms.NMSHandler;
+import net.Indyuce.creepereggs.version.wrapper.VersionWrapper;
 
 public class PremiumCreeperEggs extends JavaPlugin {
 
@@ -45,7 +45,7 @@ public class PremiumCreeperEggs extends JavaPlugin {
 	private ServerVersion version;
 
 	// interfaces
-	private NMSHandler nms;
+	private VersionWrapper nms;
 	private WGPlugin wgPlugin;
 	private SpawnerHandler spawnerHandler;
 
@@ -67,11 +67,11 @@ public class PremiumCreeperEggs extends JavaPlugin {
 	}
 
 	public void onEnable() {
-		new SpigotPlugin(61380, this).checkForUpdate();
+		new SpigotPlugin(62669, this).checkForUpdate();
 
 		try {
 			getLogger().log(Level.INFO, "Detected Bukkit Version: " + version.toString());
-			nms = (NMSHandler) Class.forName("net.Indyuce.creepereggs.version.nms.NMSHandler_" + version.toString().substring(1)).newInstance();
+			nms = (VersionWrapper) Class.forName("net.Indyuce.creepereggs.version.wrapper.NMSHandler_" + version.toString().substring(1)).newInstance();
 		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
 			getLogger().log(Level.SEVERE, "Your server version is not compatible.");
 			Bukkit.getPluginManager().disablePlugin(this);
@@ -83,20 +83,20 @@ public class PremiumCreeperEggs extends JavaPlugin {
 		// setup in eggs.yml
 		FileConfiguration eggs = ConfigData.getCD(this, "", "eggs");
 		for (CreeperEgg egg : getEggs().getAll()) {
-			if (!eggs.contains(egg.getID())) {
-				eggs.set(egg.getID() + ".name", egg.getName());
-				eggs.set(egg.getID() + ".creeper-name", egg.getCreeperName());
-				eggs.set(egg.getID() + ".lore", prepareLore(egg.getLore()));
+			if (!eggs.contains(egg.getId())) {
+				eggs.set(egg.getId() + ".name", egg.getName());
+				eggs.set(egg.getId() + ".creeper-name", egg.getCreeperName());
+				eggs.set(egg.getId() + ".lore", prepareLore(egg.getLore()));
 				for (String s : egg.getModifiers())
-					eggs.set(egg.getID() + "." + s, egg.getValue(s));
+					eggs.set(egg.getId() + "." + s, egg.getValue(s));
 				if (egg.hasRecipe()) {
-					eggs.set(egg.getID() + ".craft", egg.getRecipe().getFormattedRecipe());
-					eggs.set(egg.getID() + ".craft-enabled", true);
+					eggs.set(egg.getId() + ".craft", egg.getRecipe().getFormattedRecipe());
+					eggs.set(egg.getId() + ".craft-enabled", true);
 				}
 			}
 
 			// update eggs
-			egg.update(eggs.getConfigurationSection(egg.getID()));
+			egg.update(eggs.getConfigurationSection(egg.getId()));
 		}
 		ConfigData.saveCD(this, eggs, "", "eggs");
 
@@ -112,7 +112,7 @@ public class PremiumCreeperEggs extends JavaPlugin {
 				if (egg.isRecipeEnabled()) {
 					ShapedRecipe recipe = egg.getRecipe().toShapedRecipe();
 					if (recipe == null) {
-						getLogger().log(Level.WARNING, "Couldn't register crafting recipe of " + egg.getID());
+						getLogger().log(Level.WARNING, "Couldn't register crafting recipe of " + egg.getId());
 						continue;
 					}
 					Bukkit.addRecipe(recipe);
@@ -163,7 +163,7 @@ public class PremiumCreeperEggs extends JavaPlugin {
 		return eggManager;
 	}
 
-	public NMSHandler getNMS() {
+	public VersionWrapper getVersionWrapper() {
 		return nms;
 	}
 

@@ -25,11 +25,14 @@ import org.bukkit.inventory.meta.SpawnEggMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import net.Indyuce.creepereggs.PremiumCreeperEggs;
-import net.Indyuce.creepereggs.version.nms.ItemTag;
+import net.Indyuce.creepereggs.version.wrapper.ItemTag;
+import net.Indyuce.creepereggs.version.wrapper.NBTItem;
 
 public class CreeperEgg {
+	private final String id;
+
 	private String[] lore;
-	private String id, name, creeperName;
+	private String name, creeperName;
 	private Map<String, Double> modifiers = new HashMap<String, Double>();
 	private EggRecipe recipe;
 	private boolean recipeEnabled;
@@ -47,11 +50,11 @@ public class CreeperEgg {
 		addValue("cooldown", cooldown);
 	}
 
-	public String getID() {
+	public String getId() {
 		return id;
 	}
 
-	public String getLowerCaseID() {
+	public String getLowerCaseId() {
 		return id.toLowerCase().replace("_", "-");
 	}
 
@@ -153,9 +156,11 @@ public class CreeperEgg {
 	public void explodeCreeper(Creeper creeper) {
 		try {
 			Object handle = creeper.getClass().getMethod("getHandle").invoke(creeper);
-			Field field = Class.forName("net.minecraft.server." + PremiumCreeperEggs.getInstance().getVersion().toString() + "." + "EntityCreeper").getDeclaredField("maxFuseTicks");
+			Field field = Class.forName("net.minecraft.server." + PremiumCreeperEggs.getInstance().getVersion().toString() + "." + "EntityCreeper")
+					.getDeclaredField("maxFuseTicks");
 			field.setInt(handle, -1);
-		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException | NoSuchFieldException | ClassNotFoundException e) {
+		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException
+				| NoSuchFieldException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 	}
@@ -185,7 +190,7 @@ public class CreeperEgg {
 			lore.add(ChatColor.GRAY + ChatColor.translateAlternateColorCodes('&', s));
 		meta.setLore(lore);
 		item.setItemMeta(meta);
-		return PremiumCreeperEggs.getInstance().getNMS().addTag(item, new ItemTag("creeperEggId", getID()));
+		return NBTItem.get(item).addTag(new ItemTag("creeperEggId", getId())).toItem();
 	}
 
 	protected EggRecipe generateNewRecipe() {
